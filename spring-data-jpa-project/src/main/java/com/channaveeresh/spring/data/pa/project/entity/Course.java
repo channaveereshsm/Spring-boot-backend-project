@@ -28,4 +28,13 @@ public class Course {
             mappedBy = "course"
     )
     private CourseMaterial courseMaterial;
+
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "teacher_Id",
+            referencedColumnName = "teacherId"
+    )
+   private Teacher teacher;
 }

@@ -20,7 +20,9 @@ class CourseMaterialRepositoryTest {
     public void saveCourseMaterial()
     {
         Course c=Course.builder().title("science").credit(3).build();
-        CourseMaterial courseMaterial=CourseMaterial.builder().courseMaterialId(2L).url("https.sscience/notes.com").course(c).build();
+        CourseMaterial courseMaterial=CourseMaterial.builder().courseMaterialId(2L).url("https.sscience/notes.com").
+                course(c).
+                 build();
 
    courseMaterialRepository.save(courseMaterial);
     }

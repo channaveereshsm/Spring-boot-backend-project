@@ -1,6 +1,7 @@
 package com.channaveeresh.spring.data.pa.project.repository;
 
 import com.channaveeresh.spring.data.pa.project.entity.Course;
+import com.channaveeresh.spring.data.pa.project.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +28,13 @@ class CourseRepositoryTest {
         List<Course> s=courseRepository.findAll();
         assertFalse(s.isEmpty());
         System.out.println("s = " + s);
+    }
+    @Test
+    public void saveCourseWithTeacher()
+    {
+        Teacher teacher=Teacher.builder().firstName("narayan").LastName("hosuru").build();
+        Course course=Course.builder().teacher(teacher).title("Mathematics").credit(4).build();
+        courseRepository.save(course);
     }
 
 }

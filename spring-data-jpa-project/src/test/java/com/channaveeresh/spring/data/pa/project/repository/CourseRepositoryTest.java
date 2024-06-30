@@ -2,6 +2,7 @@ package com.channaveeresh.spring.data.pa.project.repository;
 
 import com.channaveeresh.spring.data.pa.project.SpringDataJpaProjectApplication;
 import com.channaveeresh.spring.data.pa.project.entity.Course;
+import com.channaveeresh.spring.data.pa.project.entity.Student;
 import com.channaveeresh.spring.data.pa.project.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +84,26 @@ class CourseRepositoryTest {
         List<Course> l=courseRepository.findAll(sortByCredits).getContent();
         System.out.println("l = " + l);
 
+    }
+    @Test
+    public void saveCourseWithStudnetAndTeacher()
+    {
+        Teacher teacher=Teacher.builder()
+                .firstName("ashok")
+                .LastName("Bhati")
+                .build();
+        Student student = Student.builder()
+                .firstName("manoj")
+                .lastName("negaluru")
+                .emailId("manoj@gmail.com")
+                .build();
+
+        Course course=Course.builder()
+                .title("spring boot")
+                .credit(4)
+                .teacher(teacher)
+                .build();
+        course.addStudent(student);
+        courseRepository.save(course);
     }
 }

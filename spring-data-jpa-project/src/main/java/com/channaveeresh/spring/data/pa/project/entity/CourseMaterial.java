@@ -2,6 +2,7 @@ package com.channaveeresh.spring.data.pa.project.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @ToString(exclude = "course")
 @Entity
@@ -12,19 +13,22 @@ import lombok.*;
 public class CourseMaterial {
     @Id
     @SequenceGenerator(name = "course_material_sequence",
-    sequenceName = "course_material_sequence",
-    allocationSize = 1)
+            sequenceName = "course_material_sequence",
+            allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-    generator = "course_material_sequence")
+            generator = "course_material_sequence")
     private Long courseMaterialId;
     private String url;
-    @OneToOne(cascade = CascadeType.ALL,
-    fetch = FetchType.LAZY,
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
             optional = false
     )
     @JoinColumn(
             name = "course_id",
             referencedColumnName = "courseId"
     )
+    @JsonBackReference
     private Course course;
 }

@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -63,5 +64,24 @@ class CourseRepositoryTest {
         assertEquals(pageSize, courseList.size(), "Retrieved course list size should match page size");
         System.out.println("courseList = " + courseList);
         System.out.println("size->"+size);
+    }
+
+    @Test
+    public void findAllSorting()
+    {
+        Pageable sortByTitle=PageRequest.of(1,3, Sort.by("title"));
+
+        List<Course> l=courseRepository.findAll(sortByTitle).getContent();
+        System.out.println("l = " + l);
+                
+    }
+    @Test
+    public void findAllSortingBycredits()
+    {
+        Pageable sortByCredits=PageRequest.of(0,3, Sort.by("credit"));
+
+        List<Course> l=courseRepository.findAll(sortByCredits).getContent();
+        System.out.println("l = " + l);
+
     }
 }

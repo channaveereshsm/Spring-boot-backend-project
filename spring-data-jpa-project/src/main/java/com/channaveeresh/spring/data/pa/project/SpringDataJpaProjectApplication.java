@@ -15,10 +15,6 @@ public class SpringDataJpaProjectApplication {
 		System.out.println("hi");
 
 	}
-	@GetMapping("/")
-	public static String hello()
-	{
-		return "welcome veerendra";
-	}
+
 
 }
